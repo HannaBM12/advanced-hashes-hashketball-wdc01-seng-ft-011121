@@ -1,4 +1,5 @@
 # Write your code below game_hash
+require 'pry'
 def game_hash
   {
     home: {
@@ -126,4 +127,68 @@ def game_hash
   }
 end
 
-# Write code here
+def team_players
+  all_players = []
+  home_team = game_hash[:home][:players]
+  away_team = game_hash[:away][:players]
+  all_players = home_team.concat(away_team)
+  # binding.pry
+end
+
+def num_points_scored(name)
+  players = team_players
+  players.map {|stats|
+    if stats[:player_name] == name
+      # binding.pry
+      return stats[:points]
+    end
+      }
+end
+
+def shoe_size(name)
+  players = team_players
+  players.map{|each|
+      if each[:player_name] == name
+        return each[:shoe]
+      end
+    }
+end
+
+
+def team_colors (name_of_team)
+  game_hash.map{|key, value|
+    # binding.pry
+    if value[:team_name] == name_of_team
+      return value[:colors]
+    end
+  }
+end
+
+def team_names
+  game_hash.map{|key, value|
+    value[:team_name]
+    # binding.pry
+  }
+end
+
+def player_numbers(name_of_team)
+  brooklyn_numbers = []
+  charlotte_numbers = []
+  if game_hash[:home][:team_name] == name_of_team
+    game_hash[:home][:players].each{|stats| brooklyn_numbers << stats[:number]}
+  else
+    # binding.pry
+    game_hash[:away][:players].each{|stats| charlotte_numbers << stats [:number]}
+  end
+
+  # binding.pry
+end
+
+def player_stats(name)
+  game_hash.map{|key, value|
+    value[:players].map {|k| }
+    binding.pry
+
+  }
+
+end
